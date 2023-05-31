@@ -8,6 +8,15 @@
             "name": "Site_test",
             "username": "site_user",
             "database": "site_test"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "HW_5",
+            "database": "HW_5",
+            "username": "postgres"
         }
     ]
 }

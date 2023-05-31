@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок</title>
+</head>
+<body>
+    <h1>Хай, {{name}}!</h1>
+    <p> How are u doing ?)</p>    
+    <h3>Твои Xoбби:</h3>
+    {% if hobbies %}
+        <ul>
+        {%for i in hobbies%}
+            <li>{{i}}</li>
+        {%endfor%}
+
+    {%else%}
+        <h3>Хобби нету =(</h3>
+        <ul>
+    {%endif %}
+</body>
+</html>
