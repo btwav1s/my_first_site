@@ -11,29 +11,28 @@
             
         </div>
     <div class="row row-cols-3 g-4 justify-content-center">
-
-        {% for article in articles %}
-            <div class="col-md-4">
-                <div class="card">
-                <img src="{{article.image}}" width = "250" height = "350" class="card-img-top" alt="Не загрузилось ((" >
-                <div class="card-body">
+ 
+    {% for article in articles %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{article.picture}}" width="250" height="350" class="card-img-top" alt="Не загрузилось ((">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
                     <h5 class="card-title">{{article.title}}</h5>
-                    <p class="card-text text-truncate">{{article.text}}</p>
-                </div>
-                <div class="card-footer pb-3">
-                    <small class="text-muted">Дата: {{article.date}}</small>
-                    <div class="tags">
-                        {% for tag in article.tags %}
-                            <span class="badge bg-primary">{{tag}}</span>
-                            {% endfor %}
+                    <div class="continue">
+                        <button type="button" class="btn btn-outline-primary">Прочитать</button>
                     </div>
                 </div>
-                </div>
+                <p class="card-text text-truncate">{{article.text}}</p>
             </div>
-        {% endfor %}     
-    </div>  
-{% endblock %}
+            <div class="card-footer pb-3">
+                <small class="text-muted">Дата: {{article.created_at}}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
+{% endblock %}
 
 
 

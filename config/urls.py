@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from core.views import frontpage, about
+from blog.views import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontpage, name = "home"),
-    path('about/', about, name = "about")
+    path('about/', about, name = "about"),
 ]
