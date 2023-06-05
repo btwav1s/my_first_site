@@ -34,4 +34,7 @@ def frontpage(request):
     ]
     return render(request,'core/frontpage.html',{'title':'Главная страница','articles': articles})
 
+def about(request):
+    return render(request,'core/about.html',{'title':'О нас'})
+
 # Create your views here.
