@@ -8,7 +8,6 @@
         <div class="col-md-12 mt-5 bg-body-tertiary">
             <h1 class="text-center">{{title}}</h1>
             <p class="text-center"> Всего статей: {{articles|length}}</p>
-            
         </div>
     <div class="row row-cols-3 g-4 justify-content-center">
  
@@ -20,7 +19,7 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">{{article.title}}</h5>
                     <div class="continue">
-                        <button type="button" class="btn btn-outline-primary">Прочитать</button>
+                        <a href="blog/{{article.id}}" class="btn btn-outline-primary">Прочитать</a>
                     </div>
                 </div>
                 <p class="card-text text-truncate">{{article.text}}</p>
