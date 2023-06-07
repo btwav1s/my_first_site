@@ -8,9 +8,14 @@
 
 {% block content %}
     <div class="col-md-12 mt-3 bg-body-tertiary">
-        <h1 class = "text-center" >{{article.title}}</h1>
+        <h1 class="text-center">{{article.title}}</h1>
+        
     </div>
-    <div class="col-md-5 bg-body-tertiary mt-5 article-description">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+        <img src="{{article.picture}}" class="smaller-image mt-5 img-fluid" width="500" height="500" alt="ПРОБЛЕМЫ С ФОТОГРАФИЕЙ ((">
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-5 bg-body-tertiary article-description">
             <h5>Описание статьи:</h5>
             <h5>{{article.content_preview}}</h5>
             <h5>Дата публикации: {{article.created_at}}</h5>
@@ -19,13 +24,30 @@
                 <a href='#'>#{{tag.name}}</a> 
                 {% endfor %}</h5>
             <h5>Категория: <a href='#'>{{article.category.name}}</a></h5>
+            <div class="card-comment">
+                <h2>Хотите добавить комментарий ?)↓</h2>
+                <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class="btn btn-outline-primary" type="submit" value="Добавить комментарий">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7 bg-body-tertiary article-content">
+            <p>{{ article.content|linebreaksbr }}</p>
+        </div>
     </div>
-    {% comment %} <div class="col-md-1 mt-5 separator">
-        <h1> </h1>
-    </div> {% endcomment %}
-    <div class="col-md-7 bg-body-tertiary mt-5 article_content">
-        <p>{{ article.content }}</p>
-    </div>   
+    <style>
+        .row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .article-description {
+            flex-shrink: 0;
+        }
+    </style>
+
     {% comment %} <p>Дата публикации: {{article.created_at}}</p>
     <p>Дата обновления: {{article.updated_at}}</p>
     <p>Теги: {% for tag in article.tags.all %}
@@ -34,24 +56,20 @@
     </p>
     <p>Категория: <a href='#'>{{article.category.name}}</a></p>
 
-    <p>{{article.content}}</p>
+    <p>{{article.content}}</p>{% endcomment %}
 
-    <h3>Добавить коментарий</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input class="btn btn-primary" type="submit" value="Додати коментар">
-    </form> {% endcomment %}
-
-    <h3>Коментарии</h3>
-    <hr>
-    {% for comment in article.comments.all %}
-        <p>{{comment.content}}</p>
-        <p><strong>Имя:</strong> {{comment.name}}</p>
-        <p><strong>Дата публикации:</strong> {{comment.created_at}}</p>
+    
+    
+    {% comment %} <div class = 'col-md-12 mt-2'>
+        <h3>Комментарии</h3>
         <hr>
-    {% empty %}
-        <p>Коментариев нету</p>
-    {% endfor %}
+        {% for comment in article.comments.all %}
+            <p>{{comment.content}}</p>
+            <p><strong>Имя:</strong> {{comment.name}}</p>
+            <p><strong>Дата публикации:</strong> {{comment.created_at}}</p>
+            <hr>
+        {% empty %}
+            <p>Комментариев нету</p>
+        {% endfor %} {% endcomment %}
 
 {% endblock %}
