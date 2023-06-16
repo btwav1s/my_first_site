@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% load static%}
-{% block css_additional %} <link rel="stylesheet" href="{% static 'blog/css/blog.css'%}"> {% endblock %}
+{% comment %} {% block css_additional %} <link rel="stylesheet" href="{% static 'blog/css/blog.css'%}"> {% endblock %} {% endcomment %}
 
 
 {% block title %}{{article.title}} {% endblock %}
@@ -15,21 +15,23 @@
         <img src="{{article.picture}}" class="smaller-image mt-5 img-fluid" width="500" height="500" alt="ПРОБЛЕМЫ С ФОТОГРАФИЕЙ ((">
     </div>
     <div class="row mt-5">
-        <div class="col-md-5 bg-body-tertiary article-description">
-            <h5>Описание статьи:</h5>
-            <h5>{{article.content_preview}}</h5>
-            <h5>Дата публикации: {{article.created_at}}</h5>
-            <h5>Дата обновления: {{article.created_at}}</h5>
-            <h5>Теги: {% for tag in article.tags.all %}
-                <a href='#'>#{{tag.name}}</a> 
-                {% endfor %}</h5>
-            <h5>Категория: <a href='#'>{{article.category.name}}</a></h5>
-            <div class="card-comment">
+        <div class="col-md-5">
+            <div class="article-description bg-body-tertiary">
+                <h5>Описание статьи:</h5>
+                <h5>{{article.content_preview}}</h5>
+                <h5>Дата публикации: {{article.created_at}}</h5>
+                <h5>Дата обновления: {{article.created_at}}</h5>
+                <h5>Теги: {% for tag in article.tags.all %}
+                    <a href='#'>#{{tag.name}}</a> 
+                    {% endfor %}</h5>
+                <h5>Категория: <a href='#'>{{article.category.name}}</a></h5>
+            </div>    
+            <div class="card-comment mt-3 bg-body-tertiary">
                 <h2>Хотите добавить комментарий ?)↓</h2>
                 <form method="post">
-                {% csrf_token %}
-                {{form.as_p}}
-                <input class="btn btn-outline-primary" type="submit" value="Добавить комментарий">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input class="btn btn-outline-primary" type="submit" value="Добавить комментарий">
                 </form>
             </div>
         </div>
@@ -45,6 +47,18 @@
 
         .article-description {
             flex-shrink: 0;
+        }
+        .article-description {
+            border: 1px solid #ccc;
+            padding: 10px;}
+        
+        .card-comment {
+            border: 1px solid #ccc;
+            padding: 10px;}
+
+        .article-content {
+            border: 1px solid #ccc;
+            padding: 10px;}
         }
     </style>
 
