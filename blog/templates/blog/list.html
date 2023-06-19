@@ -10,26 +10,30 @@
             <p class="text-center"> Всего статей: {{articles|length}}</p>
         </div>
     <div class="row row-cols-3 g-4 justify-content-center">
- 
-    {% for article in articles %}
-    <div class="col-md-4">
-        <div class="card">
-            <img src="{{article.picture}}" width="250" height="350" class="card-img-top" alt="Не загрузилось ((">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title">{{article.title}}</h5>
-                    <div class="continue">
-                        <a href="{% url 'details' article.id%}" class="btn btn-outline-primary">Прочитать</a>
+        
+    {% if articles %}
+        {% for article in articles %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{article.picture}}" width="250" height="350" class="card-img-top" alt="Не загрузилось ((">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">{{article.title}}</h5>
+                        <div class="continue">
+                            <a href="{% url 'details' article.id%}" class="btn btn-outline-primary">Прочитать</a>
+                        </div>
                     </div>
+                    <p class="card-text text-truncate">{{article.text}}</p>
                 </div>
-                <p class="card-text text-truncate">{{article.text}}</p>
-            </div>
-            <div class="card-footer pb-3">
-                <small class="text-muted">Дата: {{article.created_at}}</small>
+                <div class="card-footer pb-3">
+                    <small class="text-muted">Дата: {{article.created_at}}</small>
+                </div>
             </div>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>No articles =(</p>
+    {% endif %}
 
 {% endblock %}
 
