@@ -1,6 +1,6 @@
 from django.contrib import admin
 # Register your models here.
-from .models import Article, Category, Tag
+from .models import Article, Category, Tag, Comment
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ['title__iexact', 'content_preview', 'category__name']
@@ -15,4 +15,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Tag)
+admin.site.register(Comment)
 

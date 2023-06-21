@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-
-
+from .forms import CommentForm
 from .models import Article
+
 # Create your views here.
 def details(request, id):
     article = get_object_or_404(Article, id=id)
-    return render(request,'blog/details.html',{'article':article})
+    form = CommentForm()
+    return render(request,'blog/details.html',{'article':article, 'form':form})
 
 def random_article(request):
     article = Article.objects.order_by('?').first()

@@ -41,3 +41,19 @@ class Tag(models.Model):
     class Meta:
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
+
+class Comment(models.Model):
+    article = models.ForeignKey('Article', on_delete=models.CASCADE, related_name='comments', default=1, verbose_name='Комментарий к статье')
+    name = models.CharField(max_length=255, verbose_name = "Имя")
+    email = models.EmailField(max_length=255, verbose_name = "Почта")
+    content = models.TextField(verbose_name='Содержание комментария')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата написания')
+
+    def __str__(self):
+        return f'Комментарий от {self.name}'
+    
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
+    
+    
