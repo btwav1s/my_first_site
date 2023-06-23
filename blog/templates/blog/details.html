@@ -40,7 +40,16 @@
             <p>{{ article.content|linebreaksbr }}</p>
         </div>
     </div>
-    <div class ></div>
+    <h2 class ="text-center mt-4 bg-body-tertiary">Комментарии</h2>
+    {% for comment in article.comments.all%}
+        <div class = "col-md-12 comment-box bg-body-tertiary mt-4">
+            <p>Имя пользователя: {{comment.name}}</p>
+            <p>Текст комментария: {{comment.content |linebreaksbr }}</p>
+            <p>Дата написания комментария: {{comment.created_at}}</p>
+        </div>
+    {% empty %}
+        <h1>Комментариев нету =( Но ты всегда можешь это исправить ;)</h1>
+    {% endfor %}
     <style>
         {% comment %} .article-description {
             display: flex;
@@ -61,6 +70,11 @@
         .article-content {
             border: 1px solid #ccc;
             padding: 10px;}
+        
+        .comment-box {
+            border: 1px solid #ccc;
+            padding: 10px;}
+        
     </style>
 
     {% comment %} <p>Дата публикации: {{article.created_at}}</p>

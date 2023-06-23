@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
-    slug = models.SlugField(verbose_name='URL')
+    slug = models.SlugField(verbose_name='URL', unique=True)
     content_preview = models.TextField(verbose_name='Превью статьи')
     content = models.TextField(verbose_name='Текст статьи')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='articles', default=1, verbose_name='Категория')
@@ -22,7 +22,7 @@ class Article(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название категории')
-    slug = models.SlugField(default='', verbose_name='URL')
+    slug = models.SlugField(default='', unique=True)
 
     def __str__(self):
         return self.name
@@ -50,10 +50,13 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата написания')
 
     def __str__(self):
-        return f'Комментарий от {self.name}'
+        return f'Комментарий к статье: "{self.article.title[:20]}..."'
     
     class Meta:
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
+        ordering = ['-created_at']
+
+print(Comment.article)
     
     
